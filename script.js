@@ -83,7 +83,8 @@ async function deleteData(){
     });
 }
 
-getData()
+try{
+    getData()
 .then(()=> {
     postData()
     .then(()=> {
@@ -96,3 +97,6 @@ getData()
         })
     })
 })
+} catch(err){
+    console.err(err);
+}
