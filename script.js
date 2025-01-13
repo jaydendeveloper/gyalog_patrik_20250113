@@ -85,11 +85,11 @@ async function deleteData(){
 
 
 try{
-    await getData()
-    await postData()
-    await putData()
-    await patchData()
-    await deleteData()
+    await getData();
+    await postData();
+    await putData();
+    await patchData();
+    await deleteData();
 } catch(err){
     console.log(err);
 }
