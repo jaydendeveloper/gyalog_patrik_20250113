@@ -3,7 +3,7 @@ import input from "./input.js";
 async function getData(){
     const inputData = await input("Hanyas posztot geteljem?: ");
 
-    fetch('https://jsonplaceholder.typicode.com/todos/'+ inputData)
+    await fetch('https://jsonplaceholder.typicode.com/todos/'+ inputData)
     .then(response => response.json())
     .then(data => {
         console.log(data);
@@ -13,7 +13,7 @@ async function getData(){
 async function postData(){
     const inputData = await input("post adat id-je: ");
 
-    fetch("https://jsonplaceholder.typicode.com/posts", {
+    await fetch("https://jsonplaceholder.typicode.com/posts", {
         method: 'POST',
         body: JSON.stringify({
             title: 'foo',
@@ -34,7 +34,7 @@ async function putData(){
 
     const inputData = await input("put adat id-je:");
 
-    fetch("https://jsonplaceholder.typicode.com/posts/" + inputData, {
+    await fetch("https://jsonplaceholder.typicode.com/posts/" + inputData, {
         method: 'PUT',
         body: JSON.stringify({
             id: inputData,
@@ -56,7 +56,7 @@ async function patchData(){
 
     const inputData = await input("patch adat id-je:");
 
-    fetch("https://jsonplaceholder.typicode.com/posts/" + inputData, {
+    await fetch("https://jsonplaceholder.typicode.com/posts/" + inputData, {
         method: 'PATCH',
         body: JSON.stringify({
             title: 'foo'
@@ -74,7 +74,7 @@ async function patchData(){
 async function deleteData(){
     const inputData = await input("delete adat id-je:");
 
-    fetch("https://jsonplaceholder.typicode.com/posts/" + inputData, {
+    await fetch("https://jsonplaceholder.typicode.com/posts/" + inputData, {
         method: 'DELETE'
     })
     .then(response => response.json())
@@ -83,20 +83,14 @@ async function deleteData(){
     });
 }
 
+
 try{
-    getData()
-.then(()=> {
-    postData()
-    .then(()=> {
-        putData()
-        .then(()=> {
-            patchData()
-            .then(()=> {
-                deleteData()
-            })
-        })
-    })
-})
+    await getData()
+    await postData()
+    await putData()
+    await patchData()
+    await deleteData()
 } catch(err){
-    console.err(err);
+    console.log(err);
 }
+
